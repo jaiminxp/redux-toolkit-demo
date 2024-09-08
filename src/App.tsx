@@ -1,6 +1,6 @@
 import './App.css'
 import { useAppDispatch, useAppSelector } from './app/hooks'
-import { incremented } from './features/counter/counter-slice'
+import { amountAdded, incremented } from './features/counter/counter-slice'
 
 function App() {
   const count = useAppSelector((state) => state.counter.value)
@@ -10,11 +10,18 @@ function App() {
     dispatch(incremented())
   }
 
+  function handleAddAmountClick() {
+    dispatch(amountAdded(5))
+  }
+
   return (
     <>
       <h1>Redux Toolkit Demo</h1>
       <div className="card">
-        <button onClick={handleClick}>count is {count}</button>
+        <div className="btn-container">
+          <button onClick={handleClick}>count is {count}</button>
+          <button onClick={handleAddAmountClick}>Increment by 5</button>
+        </div>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
